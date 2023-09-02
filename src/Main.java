@@ -25,12 +25,12 @@ public class Main {
 		CSVParser datosProductos = CSVFormat.DEFAULT.withHeader().parse(new FileReader("./src/dataset/productos.csv"));
 		CSVParser datosClientes = CSVFormat.DEFAULT.withHeader().parse(new FileReader("./src/dataset/clientes.csv"));
 		
-		MysqlDAOFactory mysql= MysqlDAOFactory.getInstance();
 		
-		Helper helper = mysql.getHelper();
+		
+		Helper helper = new Helper();
 		helper.createTables();
 		helper.fillTables(datosFacturas, datosFacturasProductos, datosProductos, datosClientes);
-		
+		MysqlDAOFactory mysql= MysqlDAOFactory.getInstance();
 		
 		
 		DaoFactura = mysql.getDaoFactura();

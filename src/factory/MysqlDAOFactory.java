@@ -25,10 +25,6 @@ public class MysqlDAOFactory extends AbstractFactory {
 			
 		}
 			
-
-			public Helper getHelper() throws SQLException {
-				return new Helper();
-			}
 			@Override
 			public DaoFactura getDaoFactura() throws SQLException {
 				// TODO Auto-generated method stub

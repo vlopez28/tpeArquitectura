@@ -23,14 +23,9 @@ public class DaoFacturaProducto implements DAO<Factura_Producto> {
 	}
 
 	
-
-	
 	@Override
 	public void insert(Factura_Producto fp) throws SQLException {
-			//try {
-				//if(c.getEmail() == null || c.getNombre() == null || c.getIdCliente() == null) {
-			////		throw new SQLException ("Debe ingresar un cliente valido, con todos sus atributos");
-			//	}
+			
 				MysqlDAOFactory.getInstance().connect();
 				//Connection conectar = conn.connect();
 				int idFactura = fp.getId_factura();
@@ -59,12 +54,6 @@ public class DaoFacturaProducto implements DAO<Factura_Producto> {
 	}
 
 	@Override
-	public void save(Factura_Producto t) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void update(Factura_Producto t, String[] params) {
 		// TODO Auto-generated method stub
 		
@@ -75,18 +64,5 @@ public class DaoFacturaProducto implements DAO<Factura_Producto> {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	/**public static void main(String args[]) throws SQLException, FileNotFoundException, IOException {
-		DaoFacturaProducto factura_producto = new DaoFacturaProducto();
-		 CSVParser datosFacturasProductos = CSVFormat.DEFAULT.withHeader().parse(new FileReader("./src/dataset/facturas-productos.csv"));
-		try {
-			factura_producto.createTable();
-			factura_producto.insert(datosFacturasProductos);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	*/
 
 }

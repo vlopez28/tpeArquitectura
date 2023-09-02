@@ -81,7 +81,6 @@ public class DaoCliente implements DAO<Cliente> {
 		Cliente cliente = new Cliente();
 		try {
 			MysqlDAOFactory.getInstance().connect();
-			//Connection conectar = conn.connect();
 			PreparedStatement get = conn.prepareStatement("SELECT * FROM cliente WHERE idCliente = ?");
 			get.setLong(1, id);
 			ResultSet consulta = get.executeQuery();
@@ -100,7 +99,7 @@ public class DaoCliente implements DAO<Cliente> {
 		}catch(SQLException e) {
 			System.out.println(e);
 		}
-		return cliente; //ver como no retornar nada cuando el id no existe 
+		return cliente;  
 	}
 
 	@Override
@@ -108,12 +107,10 @@ public class DaoCliente implements DAO<Cliente> {
 		List<Cliente> clientes = null;
 		try {
 			MysqlDAOFactory.getInstance().connect();
-			//Connection conectar = conn.connect();
 			PreparedStatement getAll = conn.prepareStatement("SELECT * FROM cliente");
 			ResultSet consulta = getAll.executeQuery();
 			Cliente c = null;
 			clientes = new ArrayList<>();
-			
 			
 			while(consulta.next()) {
 				c = new Cliente();
@@ -132,22 +129,13 @@ public class DaoCliente implements DAO<Cliente> {
 
 
 	@Override
-	public void save(Cliente t) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void update(Cliente c, String[] params) {
 		try {
 			MysqlDAOFactory.getInstance().connect();
-			//Connection conectar = conn.connect();
 			PreparedStatement update = conn.prepareStatement("UPDATE cliente SET nombre = ?, email = ? WHERE idCliente = ?");
-			
 			update.setString(1, c.getNombre());
 			update.setString(2, c.getEmail());
 			update.setInt(3, c.getIdCliente());
-			
 			update.executeUpdate();
 			MysqlDAOFactory.getInstance().close();
 		}catch(SQLException e) {
@@ -160,7 +148,6 @@ public class DaoCliente implements DAO<Cliente> {
 	public void delete(Cliente c) {
 		try {
 			MysqlDAOFactory.getInstance().connect();
-			//Connection conectar = conn.connect();
 			PreparedStatement delete = conn.prepareStatement("DELETE FROM cliente WHERE idCliente = ?");
 			delete.setInt(1, c.getIdCliente());
 			delete.executeUpdate();

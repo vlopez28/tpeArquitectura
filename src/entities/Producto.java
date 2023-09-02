@@ -6,7 +6,6 @@ public class Producto {
 	private Float valor;
 	
 	public Producto(Integer idProducto, String nombre, Float valor) {
-	
 		this.idProducto = idProducto;
 		this.nombre = nombre;
 		this.valor = valor;

@@ -11,12 +11,16 @@ import entities.Cliente;
 import factory.MysqlDAOFactory;
 
 public class Helper {
-	private Connection conn;
+	
+	public Helper(){
+		
+	}
+	/*private Connection conn;
 	
 	
 	public Helper() throws SQLException {
 		this.conn = MysqlDAOFactory.getInstance().connect();
-	}
+	}*/
 
 	public void createTables() throws SQLException {
 		this.createTableCliente();
@@ -26,9 +30,9 @@ public class Helper {
 		
 	}
 	private void createTable(String sql) throws SQLException {
-		MysqlDAOFactory.getInstance().connect();
+		Connection c =MysqlDAOFactory.getInstance().connect();
 		String table = sql;
-		this.conn.prepareStatement(table).execute();
+		c.prepareStatement(table).execute();
 		MysqlDAOFactory.getInstance().close();
 		
 	}
@@ -76,14 +80,13 @@ public class Helper {
 	
 	private void fillTableProducto(CSVParser datosProd) throws SQLException {
 
-		MysqlDAOFactory.getInstance().connect();
-			//Connection conectar = conn.connect();
+		Connection c = MysqlDAOFactory.getInstance().connect();
 		for (CSVRecord row : datosProd) {
 			int idProducto = Integer.parseInt(row.get("idProducto"));
 			String nombre = row.get("nombre");
 			Float valor = Float.parseFloat(row.get("valor"));
 			String insert = "INSERT INTO producto (idProducto, nombre, valor) VALUES(?, ?, ?)";
-			PreparedStatement ps = this.conn.prepareStatement(insert);
+			PreparedStatement ps = c.prepareStatement(insert);
 			ps.setInt(1, idProducto);
 			ps.setString(2, nombre);
 			ps.setFloat(3, valor);
@@ -95,18 +98,13 @@ public class Helper {
 	}
 
 	private void fillTableFacturaProducto(CSVParser datosFactProd) throws SQLException {
-		//try {
-		//if(c.getEmail() == null || c.getNombre() == null || c.getIdCliente() == null) {
-	////		throw new SQLException ("Debe ingresar un cliente valido, con todos sus atributos");
-	//	}
-		MysqlDAOFactory.getInstance().connect();
-		//Connection conectar = conn.connect();
+		Connection c = MysqlDAOFactory.getInstance().connect();
 		for (CSVRecord row : datosFactProd) {
 			int idFactura = Integer.parseInt(row.get("idFactura"));
 			int idProducto = Integer.parseInt(row.get("idProducto"));
 			int cantidad = Integer.parseInt(row.get("cantidad"));
 			String insert = "INSERT INTO factura_producto (idFactura, idProducto, cantidad) VALUES(?, ?, ?)  ";
-			PreparedStatement ps = this.conn.prepareStatement(insert);
+			PreparedStatement ps = c.prepareStatement(insert);
 			ps.setInt(1, idFactura);
 			ps.setInt(2, idProducto);
 			ps.setInt(3, cantidad);
@@ -117,12 +115,12 @@ public class Helper {
 	}
 
 	private void fillTableFactura(CSVParser datosT) throws SQLException {
-		MysqlDAOFactory.getInstance().connect();
+		Connection c = MysqlDAOFactory.getInstance().connect();
 		for (CSVRecord row : datosT) {
 			int idFactura = Integer.parseInt(row.get("idFactura"));
 			int idCliente = Integer.parseInt(row.get("idCliente"));
 			String insert = "INSERT INTO factura (idFactura, idCliente) VALUES( ?, ?)  ";
-			PreparedStatement ps = this.conn.prepareStatement(insert);
+			PreparedStatement ps = c.prepareStatement(insert);
 			ps.setInt(1, idFactura);
 			ps.setInt(2, idCliente);
 			ps.executeUpdate();
@@ -134,13 +132,13 @@ public class Helper {
 
 	private void fillTableCliente(CSVParser datosT) throws SQLException {
 	
-		MysqlDAOFactory.getInstance().connect();
+		Connection c = MysqlDAOFactory.getInstance().connect();
 		for (CSVRecord row : datosT) {
 				int idCliente = Integer.parseInt(row.get("idCliente"));
 				String nombre = row.get("nombre");
 				String email = row.get("email");
 				String insert = "INSERT INTO cliente  (idCliente, nombre, email) VALUES(?, ?, ?)  ";
-				PreparedStatement ps = this.conn.prepareStatement(insert);
+				PreparedStatement ps = c.prepareStatement(insert);
 				ps.setInt(1, idCliente);
 				ps.setString(2, nombre);
 				ps.setString(3, email);

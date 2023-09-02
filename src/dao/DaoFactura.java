@@ -67,11 +67,6 @@ public class DaoFactura implements DAO<Factura>{
 	}
 
 	@Override
-	public void save(Factura t) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
 	public void update(Factura t, String[] params) {
 		// TODO Auto-generated method stub
 	}

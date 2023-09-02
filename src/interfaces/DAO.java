@@ -16,8 +16,6 @@ public interface DAO<T>{
 	    
 	    public  List getAll();
 	    
-	    public  void save(T t);
-	    
 	    public  void update(T t, String[] params);
 	    
 	    public  void delete(T t);

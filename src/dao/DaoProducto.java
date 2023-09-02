@@ -27,11 +27,8 @@ public class DaoProducto implements DAO<Producto> {
 		this.conn = conn;
 	}
 	
-	
-	
 	@Override
 	public void insert(Producto p) throws SQLException {
-		
 
 		if(p.getIdProducto() == null || p.getNombre() == null || p.getValor() == null) {
 			throw new SQLException ("Debe ingresar un producto valido, con todos sus atributos");
@@ -55,11 +52,7 @@ public class DaoProducto implements DAO<Producto> {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	@Override
-	public void save(Producto t) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	@Override
 	public void update(Producto t, String[] params) {
 		// TODO Auto-generated method stub
@@ -77,18 +70,4 @@ public class DaoProducto implements DAO<Producto> {
 	}
 }
 	
-/*	public static void main(String args[]) throws SQLException, FileNotFoundException, IOException {
-		DaoProducto producto = new DaoProducto();
-		 CSVParser datosProductos = CSVFormat.DEFAULT.withHeader().parse(new FileReader("./src/dataset/productos.csv"));
-		try {
-			producto.createTable();
-			producto.insert(datosProductos);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-}
 	
-
-*/

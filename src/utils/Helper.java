@@ -21,8 +21,8 @@ public class Helper {
 	public void createTables() throws SQLException {
 		this.createTableCliente();
 		this.createTableFactura();
-		this.createTableFacturaProducto();
 		this.createTableProducto();
+		this.createTableFacturaProducto();
 		
 	}
 	private void createTable(String sql) throws SQLException {
